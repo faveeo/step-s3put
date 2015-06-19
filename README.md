@@ -1,7 +1,10 @@
-# s3sync
+# s3put
 
-Synchronize a directory to a s3 bucket. It makes the bucket identical to the `source-dir`.
-Note that this means that remote files that are not in the `source-dir` are deleted.
+This step app is a modification of wercker/step-s3sync to do a `put` instead of a `sync`
+
+It uses the command `s3cmd put` to copy a folder or a file.
+Use the option `opts --recursive` to copy a folder with all it's files recursively into the S3 bucket. See http://s3tools.org/usage 
+
 The synchronized files will get an public access level.
 
 It is recommended that you use application and deployment variables in wercker, so you don't include any private keys in your code.
@@ -17,8 +20,7 @@ It is recommended that you use application and deployment variables in wercker, 
 * `key-id` (required) The Amazon Access key that will be used for authorization.
 * `key-secret` (required) The Amazon Access secret that will be used for authorization.
 * `bucket-url` (required) The url of the bucket to sync to, like: `s3://wercker.com`
-* `source-dir` (optional, default: `./`) The directory to sync to the remote bucket.
-* `delete-removed` (optional, default: `true`) Add `--delete-remove` flag if this is `true`.
+* `source-dir` (optional, default: `./`) The directory to copy to the remote bucket.
 * `opts` (optional, default: `--acl-public`) Arbitrary options provided to s3cmd. See `s3cmd --help` for more.
 
 # Example
@@ -79,6 +81,11 @@ It's a good idea to create a IAM user which just has enough permissions to be ab
 The MIT License (MIT)
 
 # Changelog
+
+## 3.0.0
+
+- Fork from https://github.com/wercker/step-s3sync
+- Change `sync` to `put` 
 
 ## 2.0.3
 
