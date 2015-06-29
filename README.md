@@ -82,6 +82,10 @@ The MIT License (MIT)
 
 # Changelog
 
+## 3.0.1
+
+Update s3cmd
+
 ## 3.0.0
 
 - Fork from https://github.com/wercker/step-s3sync
